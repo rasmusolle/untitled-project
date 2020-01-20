@@ -1,0 +1,35 @@
+body {
+	
+}
+
+div.box {
+	width: 300px;
+	padding: 10px;
+	border: 1px solid gray;
+	margin: 0;
+	display: inline-table;
+}
+
+div.box {
+	width: 300px;
+	padding: 10px;
+	border: 1px solid gray;
+	margin: 0;
+	display: inline-table;
+}
+
+nav {
+	display: inline-table;
+	margin-bottom: 1em;
+}
+
+td.layout {
+	border: 3px solid #000000;
+}
+
+td.w400 {
+	width: 396px;
+}
+
+.buyclr { background-color: #ccffcc; }
+.sellclr { background-color: #ffcccc; }

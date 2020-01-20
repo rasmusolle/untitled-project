@@ -1,0 +1,12 @@
+table, th, td {
+	border: 1px solid black;
+}
+th, td {
+	padding: 5px;
+}
+table.menu th {
+	text-align: left;
+}
+a {
+	text-decoration: none;
+}
