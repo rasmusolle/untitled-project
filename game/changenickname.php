@@ -6,8 +6,7 @@ img { padding: 3px; }
 if (isset($_POST['changeto'])) {
 	if (strlen($_POST['changeto']) <= 30) {
 		$userdata['nickname'] = $_POST['changeto'];
-		$_POST['changeto'] = mysqli_real_escape_string($mysqli, $_POST['changeto']);
-		SqlQuery("UPDATE `users` SET `nickname` = '" . $_POST['changeto'] . "' WHERE `users`.`username` = '{$_SESSION['username']}';");
+		query("UPDATE users SET nickname = ? WHERE username = ?", [$_POST['changeto'], $_SESSION['username']]);
 		echo '<table><tr><td class="layout" style="background-color:#00ff00">Nickname successfully changed to "' . $_POST['changeto'] . '".</td></tr></table>';
 	} else {
 		echo '<table><tr><td class="layout" style="width:380px;background-color:#ff0000">Error - Nickname is too long.</td></tr></table>';
@@ -15,8 +14,7 @@ if (isset($_POST['changeto'])) {
 }
 if (isset($_GET['flag'])) {
 	if (strlen($_GET['flag']) < 3) {
-		$_GET['flag'] = mysqli_real_escape_string($mysqli, $_GET['flag']);
-		SqlQuery("UPDATE `users` SET `country` = '" . $_GET['flag'] . "' WHERE `users`.`username` = '{$_SESSION['username']}';");
+		query("UPDATE users SET country = ? WHERE username = ?", [$_GET['flag'], $_SESSION['username']]);
 		echo '<table><tr><td class="layout" style="background-color:#00ff00">Flag successfully changed to <img src="static/flag/' . $_GET['flag'] . '.gif">.</td></tr></table>';
 	} else {
 		echo '<table><tr><td class="layout" style="width:380px;background-color:#ff0000">Error - Invalid flag.</td></tr></table>';

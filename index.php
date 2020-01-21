@@ -5,7 +5,6 @@ $start = microtime(true);
 
 require("config.php");
 require("functions/functions.php");
-require("functions/functions_user.php");
 require("functions/mysql.php");
 
 if (isset($_SESSION['loggedin'])) {

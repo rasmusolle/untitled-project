@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/game_shop.css"/>
+<link rel="stylesheet" type="text/css" href="css/game_shop.css">
 <?php
 if (isset($_GET['category'])) {
 	?>
@@ -19,8 +19,8 @@ if (isset($_GET['category'])) {
 		<?php
 		// $_GET['category'] is user-inputted. Check so it's an int.
 		if (!is_numeric($_GET['category'])) $_GET['category'] = 0;
-		$db_query = SqlQuery("SELECT * FROM items WHERE category=" . $_GET['category']);
-		while ($record = mysqli_fetch_array($db_query)) {
+		$query = query("SELECT * FROM items WHERE category = ?", [$_GET['category']]);
+		while ($record = $query->fetch()) {
 			?>
 			<tr>
 				<td><?=$record['itemname'] ?></td>

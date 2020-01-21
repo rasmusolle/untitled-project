@@ -5,7 +5,7 @@ if ($userdata['powerlevel'] < 2) {
 if ((isset($_GET['a']) ? $_GET['a'] : (isset($_POST['a']) ? $_POST['a'] : false))) {
 	switch ((isset($_GET['a']) ? $_GET['a'] : $_POST['a'])) {
 		case 'chatclear':
-			SqlQuery("TRUNCATE TABLE chat;");
+			query("TRUNCATE TABLE chat");
 			echo '<font color=blue>Chat has been cleared successfully.</font>';
 		break;
 		case 'banuser':
@@ -25,9 +25,8 @@ echo $_SERVER['REQUEST_URI'];
 				<input type="hidden" name="a" value="banuser">
 				Ban <select name="user">
 					<?php
-					$db_query = SqlQuery("SELECT * FROM users");
-					
-					while ($record = mysqli_fetch_array($db_query)) {
+					$query = query("SELECT * FROM users");
+					while ($record = $query->fetch()) {
 						echo '<option value="' . $record['userID'] . '">' . $record['nickname'] . ' (ID: ' . $record['userID'] . ')</option>';
 					}
 					?>

@@ -1,59 +1,29 @@
 <?php
-$mysqli = new mysqli($host, $user, $pass, $db);
-// Set charset to utf8
-mysqli_set_charset($mysqli, 'utf8');
-
-// Oh no! A connect_errno exists so the connection attempt failed!
-if ($mysqli->connect_errno) {
-	echo "Sorry, but we're currently experiencing problems. Please come back later.";
-	exit;
+$options = [
+	PDO::ATTR_ERRMODE				=> PDO::ERRMODE_EXCEPTION,
+	PDO::ATTR_DEFAULT_FETCH_MODE	=> PDO::FETCH_ASSOC,
+	PDO::ATTR_EMULATE_PREPARES		=> false,
+];
+try {
+	$sql = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, $options);
+} catch (\PDOException $e) {
+	die('Database connection error');
 }
 
-$sqldebug = 1;
+function query($query,$params = []) {
+	global $sql;
 
-function SqlQuery($query) {
-	global $mysqli, $sqldebug;
-	
-	$res = $mysqli->query($query);
-	if (!$res) {
-		print "<strong>MySQL error</strong>: ".$mysqli->error;
-		if ($sqldebug) print " @ ".$query;
-		print "<br>";
-	}
-	
+	$res = $sql->prepare($query);
+	$res->execute($params);
 	return $res;
 }
 
-function SqlFetchRow($res) {
-	if (!$res) return NULL;
-	if ($res->num_rows <= 0) return NULL;
-	
-	$ret = $res->fetch_assoc();
-
-	return $ret;
+function fetch($query,$params = []) {
+	$res = query($query,$params);
+	return $res->fetch();
 }
 
-function SqlQueryFetchRow($query) {
-	return SqlFetchRow(SqlQuery($query));
+function result($query,$params = []) {
+	$res = query($query,$params);
+	return $res->fetchColumn();
 }
-
-function SqlQueryResult($query, $col = 0) {
-	$res = SqlQuery($query);
-	if (!$res) return NULL;
-	if ($res->num_rows <= 0) return NULL;
-	
-	$ceva = array_values($res->fetch_assoc());
-	$rasp = $ceva[$col];
-	return $rasp;
-}
-
-function SqlNumRows($res) {
-	if (!$res) return 0;
-	return $res->num_rows;
-}
-
-function SqlEscape($val) { global $dblink; return $dblink->real_escape_string($val); }
-
-function SqlInsertId() { global $dblink; return $dblink->insert_id; }
-
-?>

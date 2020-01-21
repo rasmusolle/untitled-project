@@ -3,8 +3,7 @@ if (isset($_POST['buystars'])) {
 	if ($_POST['quantity'] < ($userrpgdata['coins'] / $_POST['value'])) {
 		$userrpgdata['coins'] = $userrpgdata['coins'] - ($_POST['quantity'] * $_POST['value']);
 		$userrpgdata['stars'] = $userrpgdata['stars'] +  $_POST['quantity'];
-		SqlQuery("UPDATE `usersrpg` SET `coins` = '" . $userrpgdata['coins'] . "' WHERE `usersrpg`.`userID` = " . $userdata['userID'] . ";");
-		SqlQuery("UPDATE `usersrpg` SET `stars` = '" . $userrpgdata['stars'] . "' WHERE `usersrpg`.`userID` = " . $userdata['userID'] . ";");
+		query("UPDATE usersrpg SET coins = ?, stars = ? WHERE userID = ?", [$userrpgdata['coins'], $userrpgdata['stars'], $userdata['userID']]);
 		echo 'Bought ' . $_POST['quantity'] . ' stars at a rate of ' . $_POST['value'] . ' Coins / Star';
 	} else {
 		errorprint('Not enough coins to complete this action.');
@@ -14,8 +13,7 @@ if (isset($_POST['sellstars'])) {
 	if ($_POST['quantity'] < $userrpgdata['stars']) {
 		$userrpgdata['coins'] = $userrpgdata['coins'] + ($_POST['quantity'] * $_POST['value']);
 		$userrpgdata['stars'] = $userrpgdata['stars'] -  $_POST['quantity'];
-		SqlQuery("UPDATE `usersrpg` SET `coins` = '" . $userrpgdata['coins'] . "' WHERE `usersrpg`.`userID` = " . $userdata['userID'] . ";");
-		SqlQuery("UPDATE `usersrpg` SET `stars` = '" . $userrpgdata['stars'] . "' WHERE `usersrpg`.`userID` = " . $userdata['userID'] . ";");
+		query("UPDATE usersrpg SET coins = ?, stars = ? WHERE userID = ?", [$userrpgdata['coins'], $userrpgdata['stars'], $userdata['userID']]);
 		echo 'Sold ' . $_POST['quantity'] . ' stars at a rate of ' . $_POST['value'] . ' Coins / Star';
 	} else {
 		errorprint('Not enough stars to complete this action.');
@@ -23,7 +21,7 @@ if (isset($_POST['sellstars'])) {
 }
 if ($error) echo '<br>';
 ?>
-<link rel="stylesheet" type="text/css" href="/css/game_exchange.css"/>
+<link rel="stylesheet" type="text/css" href="/css/game_exchange.css">
 
 <b>Stars Exchange</b><br>
 <b>Stars: <font color="blue">* <?=round($userrpgdata['stars'], 2) ?></font></b><br>
@@ -50,7 +48,7 @@ if ($error) echo '<br>';
 				<input type="hidden" name="value" value="302">
 				Sell quantity: <input name="quantity" type="text" value="10">
 				<br> @ price: 238 Coins each<br><br><br>
-				<input type="submit" value="Place Sell Order"><br />
+				<input type="submit" value="Place Sell Order"><br>
 			</form>
 		</td>
 	</tr>

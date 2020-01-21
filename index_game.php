@@ -1,6 +1,6 @@
 <?php
-$userdata = SqlQueryFetchRow("SELECT * FROM users WHERE username=\"{$_SESSION['username']}\"");
-$userrpgdata = SqlQueryFetchRow("SELECT * FROM usersrpg WHERE userID={$userdata['userID']}");
+$userdata = fetch("SELECT * FROM users WHERE username = ?", [$_SESSION['username']]);
+$userrpgdata = fetch("SELECT * FROM usersrpg WHERE userID = ?", [$userdata['userID']]);
 
 if (isset($_GET['logout'])) {
 	session_destroy();
@@ -8,7 +8,7 @@ if (isset($_GET['logout'])) {
 }
 
 if ($userdata['bantime'] >=  time()) {
-	SqlQuery("UPDATE `users` SET `bantime` = '0' WHERE `users`.`userID` = ".$userdata['userID'].";");
+	query("UPDATE users SET bantime = '0' WHERE userID = ?", [$userdata['userID']]);
 	$userdata['bantime'] = 0;
 }
 
@@ -24,14 +24,14 @@ if ($cphDbg)
 $coinearnamount = $coinearntime * ($userrpgdata['coinsperhour'] / 3600);
 if ($cphDbg)
 	echo $coinearnamount;
-SqlQuery("UPDATE `usersrpg` SET `coins` = '" . ($userrpgdata['coins'] + $coinearnamount) . "' WHERE `usersrpg`.`userID` = {$userdata['userID']};");
-SqlQuery("UPDATE `users` SET `lastview` = '" . time() . "' WHERE `users`.`username` = '{$_SESSION['username']}';");
+query("UPDATE usersrpg SET coins = ? WHERE userID = ?", [($userrpgdata['coins'] + $coinearnamount), $userdata['userID']]);
+query("UPDATE users SET lastview = ? WHERE username = ?", [time(), $_SESSION['username']]);
 
 ?>
 <html>
 	<head>
-		<?php head_init('default', 'css/game.css') ?>
-		<style><?php include('css/bootstrap-btn.css') ?></style>
+		<?php head_init('css/game.css') ?>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-btn.css">
 	</head>
 	<body>
 		<?php if (isset($_SESSION['firsttime']) && $_SESSION['firsttime'] == true) { ?>
@@ -51,7 +51,7 @@ SqlQuery("UPDATE `users` SET `lastview` = '" . time() . "' WHERE `users`.`userna
 				</tr>
 			</table><?php
 			$userrpgdata['coins'] = $userrpgdata['coins'] - $_SESSION['fleelost'];
-			SqlQuery("UPDATE `usersrpg` SET `coins` = '" . $userrpgdata['coins'] . "' WHERE `usersrpg`.`userID` = " . $userdata['userID'] . ";");
+			query("UPDATE usersrpg SET coins = ? WHERE userID = ?", [$userrpgdata['coins'], $userdata['userID']]);
 			unset($_SESSION['fleelost']);
 		}
 		// If there's no get request found, you just logged in so set it to 1.

@@ -1,7 +1,7 @@
 <?php $sq_number = [rand(1,100),rand(1,100),rand(1,100)] ?>
 <html>
 	<head>
-		<?php head_init("default","css/style_register.css") ?>
+		<?php head_init("css/style_register.css") ?>
 	</head>
 	<?php
 	if (isset($_POST['sent'])) {
@@ -15,7 +15,7 @@
 			// Success, continue.
 
 			// Check username conflicts
-			$usernamematches = SqlQueryResult("SELECT COUNT(*) FROM users WHERE username='" . $_POST['username'] . "'");
+			$usernamematches = result("SELECT COUNT(*) FROM users WHERE username = ?", [$_POST['username']]);
 			if ($usernamematches) {
 				echo '<font class="error">Username is already taken.</font>';
 				goto skipcheck;
@@ -25,12 +25,10 @@
 				echo '<font class="error">The password and password confirm boxes aren\'t the same.</font>';
 				goto skipcheck;
 			}
-			$_POST['username'] = mysqli_real_escape_string($mysqli, $_POST['username']);
-			$_POST['password'] = mysqli_real_escape_string($mysqli, $_POST['password']);
 			// MySQL stuff
-			SqlQuery("INSERT INTO `users` (`userID`, `username`, `nickname`, `password`, `powerlevel`) VALUES (NULL, '{$_POST['username']}', '{$_POST['username']}', '{$_POST['password']}', 1);");
+			query("INSERT INTO users (username, nickname, password, powerlevel) VALUES (?, ?, ?, 1)", [$_POST['username'], $_POST['username'], $_POST['password']]);
 			// RPG stuff
-			SqlQuery("INSERT INTO `usersrpg` (`userID`, `coinsperhour`) VALUES (NULL, '1');");
+			query("INSERT INTO usersrpg (coinsperhour) VALUES (1)");
 			
 			// log in
 			$_SESSION['loggedin'] = true;

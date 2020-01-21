@@ -89,7 +89,7 @@ What to do?<br><br>
 				</table>
 			</td>
 			<td style="width:50%">
-				<table style="">
+				<table>
 					<tr>
 						<th class="right">HP</th>
 						<td><?=$_SESSION['HP'] ?>/<?=$_SESSION['HPmax'] ?></td>

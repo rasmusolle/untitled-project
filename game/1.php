@@ -28,7 +28,7 @@ Welcome <span style="color: <?=powerlevelcolor($userdata['powerlevel']) ?>"><?=$
 		</tr>
 	</table>
 	<hr>
-	<table style="">
+	<table>
 		<tr>
 			<th class="right">HP</th>
 			<td><?=$userrpgdata['HP'] ?>/<?=$userrpgdata['HPmax'] ?></td>
