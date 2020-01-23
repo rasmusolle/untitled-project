@@ -20,45 +20,45 @@ Welcome <span style="color: <?=powerlevelcolor($userdata['powerlevel']) ?>"><?=$
 	<table>
 		<tr>
 			<th class="right">Coins</th>
-			<td><?=round($userrpgdata['coins'], 2) ?></td>
+			<td><?=round($userdata['coins'], 2) ?></td>
 		</tr>
 		<tr>
 			<th class="right">*</th>
-			<td><?=$userrpgdata['stars'] ?></td>
+			<td><?=$userdata['stars'] ?></td>
 		</tr>
 	</table>
 	<hr>
 	<table>
 		<tr>
 			<th class="right">HP</th>
-			<td><?=$userrpgdata['HP'] ?>/<?=$userrpgdata['HPmax'] ?></td>
+			<td><?=$userdata['HP'] ?>/<?=$userdata['HPmax'] ?></td>
 		</tr>
 		<tr>
 			<th class="right">MP</th>
-			<td><?=$userrpgdata['MP'] ?>/<?=$userrpgdata['MPmax'] ?></td>
+			<td><?=$userdata['MP'] ?>/<?=$userdata['MPmax'] ?></td>
 		</tr>
 	</table>
 	<hr>
 	<table>
 		<tr>
 			<th class="right"><abbr title="Attack (Strength)">Atk</abbr></th>
-			<td><?=$userrpgdata['attack'] ?></td>
+			<td><?=$userdata['attack'] ?></td>
 		</tr>
 		<tr>
 			<th class="right"><abbr title="Defense">Def</abbr></th>
-			<td><?=$userrpgdata['defense'] ?></td>
+			<td><?=$userdata['defense'] ?></td>
 		</tr>
 		<tr>
 			<th class="right"><abbr title="Speed">Spd</abbr></th>
-			<td><?=$userrpgdata['speed'] ?></td>
+			<td><?=$userdata['speed'] ?></td>
 		</tr>
 		<tr>
 			<th class="right"><abbr title="Intelligence">Int</abbr></th>
-			<td><?=$userrpgdata['intelligence'] ?></td>
+			<td><?=$userdata['intelligence'] ?></td>
 		</tr>
 		<tr>
 			<th class="right"><abbr title="Luck">Lck</abbr></th>
-			<td><?=$userrpgdata['luck'] ?> <span style="color:darkred"><abbr title="You've won the latest Lottery drawings.">(0.5x)</abbr></span></td>
+			<td><?=$userdata['luck'] ?> <span style="color:darkred"><abbr title="You've won the latest Lottery drawings.">(0.5x)</abbr></span></td>
 		</tr>
 	</table>
 </div>&nbsp;
@@ -69,4 +69,4 @@ Welcome <span style="color: <?=powerlevelcolor($userdata['powerlevel']) ?>"><?=$
 		<li></li>
 	</ul>
 </div>
-<br>Coins per hour: <?=$userrpgdata['coinsperhour'] ?>
+<br>Coins per hour: <?=$userdata['coinsperhour'] ?>

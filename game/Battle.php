@@ -25,7 +25,7 @@ if (!isset($_SESSION['inbattle']) || !$_SESSION['inbattle']) {
 			switch ($_GET['atktype']) {
 				case 1:
 					echo 'Debug - prevEnemyHP = ' . $_SESSION['HP'] . '<br>';
-					$_SESSION['HP'] = $_SESSION['HP'] - (round($userrpgdata['attack'] / 5,0));
+					$_SESSION['HP'] = $_SESSION['HP'] - (round($userdata['attack'] / 5,0));
 				break;
 				case 2:
 					echo 'Debug - ';
@@ -35,8 +35,8 @@ if (!isset($_SESSION['inbattle']) || !$_SESSION['inbattle']) {
 		
 		case 'flee':
 			$_SESSION['fleelost'] = rand(100,200);
-			if ($_SESSION['fleelost'] > $userrpgdata['coins']) {
-				$_SESSION['fleelost'] = $userrpgdata['coins'];
+			if ($_SESSION['fleelost'] > $userdata['coins']) {
+				$_SESSION['fleelost'] = $userdata['coins'];
 			}
 			echo '<meta http-equiv="refresh" content="0; url=/">';
 			echo '<a href="/">Not being redirected?</a>';
@@ -57,34 +57,34 @@ What to do?<br><br>
 				<table>
 					<tr>
 						<th class="right">HP</th>
-						<td><?=$userrpgdata['HP'] ?>/<?=$userrpgdata['HPmax'] ?></td>
+						<td><?=$userdata['HP'] ?>/<?=$userdata['HPmax'] ?></td>
 					</tr>
 					<tr>
 						<th class="right">MP</th>
-						<td><?=$userrpgdata['MP'] ?>/<?=$userrpgdata['MPmax'] ?></td>
+						<td><?=$userdata['MP'] ?>/<?=$userdata['MPmax'] ?></td>
 					</tr>
 				</table>
 				<hr>
 				<table>
 					<tr>
 						<th class="right">Atk</th>
-						<td><?=$userrpgdata['attack'] ?></td>
+						<td><?=$userdata['attack'] ?></td>
 					</tr>
 					<tr>
 						<th class="right">Def</th>
-						<td><?=$userrpgdata['defense'] ?></td>
+						<td><?=$userdata['defense'] ?></td>
 					</tr>
 					<tr>
 						<th class="right">Spd</th>
-						<td><?=$userrpgdata['speed'] ?></td>
+						<td><?=$userdata['speed'] ?></td>
 					</tr>
 					<tr>
 						<th class="right">Int</th>
-						<td><?=$userrpgdata['intelligence'] ?></td>
+						<td><?=$userdata['intelligence'] ?></td>
 					</tr>
 					<tr>
 						<th class="right">Lck</th>
-						<td><?=$userrpgdata['luck'] ?></td>
+						<td><?=$userdata['luck'] ?></td>
 					</tr>
 				</table>
 			</td>

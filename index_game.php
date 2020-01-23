@@ -1,6 +1,5 @@
 <?php
 $userdata = fetch("SELECT * FROM users WHERE username = ?", [$_SESSION['username']]);
-$userrpgdata = fetch("SELECT * FROM usersrpg WHERE userID = ?", [$userdata['userID']]);
 
 if (isset($_GET['logout'])) {
 	session_destroy();
@@ -21,11 +20,10 @@ $cphDbg = false;
 $coinearntime = time() - $userdata['lastview'];
 if ($cphDbg)
 	echo $coinearntime . '<br>';
-$coinearnamount = $coinearntime * ($userrpgdata['coinsperhour'] / 3600);
+$coinearnamount = $coinearntime * ($userdata['coinsperhour'] / 3600);
 if ($cphDbg)
 	echo $coinearnamount;
-query("UPDATE usersrpg SET coins = ? WHERE userID = ?", [($userrpgdata['coins'] + $coinearnamount), $userdata['userID']]);
-query("UPDATE users SET lastview = ? WHERE username = ?", [time(), $_SESSION['username']]);
+query("UPDATE users SET coins = ?, lastview = ? WHERE userID = ?", [($userdata['coins'] + $coinearnamount), time(), $userdata['userID']]);
 
 ?>
 <html>
@@ -50,8 +48,8 @@ query("UPDATE users SET lastview = ? WHERE username = ?", [time(), $_SESSION['us
 					</td>
 				</tr>
 			</table><?php
-			$userrpgdata['coins'] = $userrpgdata['coins'] - $_SESSION['fleelost'];
-			query("UPDATE usersrpg SET coins = ? WHERE userID = ?", [$userrpgdata['coins'], $userdata['userID']]);
+			$userdata['coins'] = $userdata['coins'] - $_SESSION['fleelost'];
+			query("UPDATE users SET coins = ? WHERE userID = ?", [$userdata['coins'], $userdata['userID']]);
 			unset($_SESSION['fleelost']);
 		}
 		// If there's no get request found, you just logged in so set it to 1.

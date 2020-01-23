@@ -27,9 +27,7 @@
 			}
 			// MySQL stuff
 			query("INSERT INTO users (username, nickname, password, powerlevel) VALUES (?, ?, ?, 1)", [$_POST['username'], $_POST['username'], $_POST['password']]);
-			// RPG stuff
-			query("INSERT INTO usersrpg (coinsperhour) VALUES (1)");
-			
+
 			// log in
 			$_SESSION['loggedin'] = true;
 			$_SESSION['username'] = $_POST['username'];

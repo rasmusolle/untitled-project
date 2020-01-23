@@ -11,7 +11,7 @@
 			$logindata = fetch("SELECT password FROM users WHERE username = ? AND password = ? LIMIT 1", [$username, $password]);
 			if ($password == $logindata['password']) {
 				?>
-				<table><tr><td style="text-align: center;" bgcolor="#00ff00">
+				<table><tr><td class="center" bgcolor="#00ff00">
 					You've been successfully logged in.<br>
 					<button type="button" onclick="window.location.href = window.location.href;">Click to continue.</button>
 				</td></tr></table>
@@ -30,7 +30,7 @@
 	<body>
 		<table>
 			<tr>
-				<td style="text-align: center;" bgcolor="#ff3333">
+				<td class="center" bgcolor="#ff3333">
 					<p>Please log in using your Username and Password.</p>
 					<form action="./" method="post">
 						Username: <input type="text" id="username" name="username"><br>
@@ -42,7 +42,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align: center;" bgcolor="#ddccff">
+				<td class="center" bgcolor="#ddccff">
 					<a href="#">About</a> <a href="#">Cookie Information</a><!-- | <a href="#">Privacy Policy thingy</a>-->
 				</td>
 			</tr>
