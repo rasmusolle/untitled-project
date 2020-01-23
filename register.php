@@ -7,7 +7,7 @@
 	if (isset($_POST['sent'])) {
 		// See if inputs aren't blank
 		if ($_POST['username'] == "" || $_POST['password'] == "" || $_POST['passwordconfirm'] == "") {
-			echo '<font class="error">Please fill in the input boxes.</font>';
+			echo '<span class="error">Please fill in the input boxes.</span>';
 			goto skipcheck;
 		}
 		// Security Question Check
@@ -17,12 +17,12 @@
 			// Check username conflicts
 			$usernamematches = result("SELECT COUNT(*) FROM users WHERE username = ?", [$_POST['username']]);
 			if ($usernamematches) {
-				echo '<font class="error">Username is already taken.</font>';
+				echo '<span class="error">Username is already taken.</span>';
 				goto skipcheck;
 			}
 			// Check passwords
 			if ($_POST['password'] != $_POST['passwordconfirm']) {
-				echo '<font class="error">The password and password confirm boxes aren\'t the same.</font>';
+				echo '<span class="error">The password and password confirm boxes aren\'t the same.</span>';
 				goto skipcheck;
 			}
 			// MySQL stuff
@@ -39,7 +39,7 @@
 			?>
 			<table>
 				<tr>
-					<td style="text-align: center;" bgcolor="#00ff00">
+					<td class="center" bgcolor="#00ff00">
 						You've registered successfully.<br>
 						<button type="button" onclick="window.location.href = '/';">Click to continue.</button>
 					</td>
@@ -49,7 +49,7 @@
 			die();
 		} else {
 			// Fail.
-			echo '<font class="error">Wrong <em>Security Question</em>&trade;&reg;&copy; answer.</font>';
+			echo '<span class="error">Wrong <em>Security Question</em>&trade;&reg;&copy; answer.</span>';
 		}
 	}
 	// Oh no the velociraptor will hunt me down!
@@ -61,8 +61,8 @@
 		<table>
 			<tr>
 				<td bgcolor="#00ff00">
-					<span style="text-align:center;">Please fill out this form to register.</span>
-					<form id="form" action="/register" method="post">
+					<span>Please fill out this form to register.</span>
+					<form id="form" action="/?register" method="post">
 						<p>Username: <input type="text" id="username" name="username"></p>
 						<p>Password: <input type="password" id="password" name="password"></p>
 						<p>Confirm Password: <input type="password" id="passwordconfirm" name="passwordconfirm"></p>
@@ -70,10 +70,10 @@
 						<input type="hidden" name="sent" value="true">
 						<input type="submit" value="Register">
 					</form>
-					<br><p style="text-align:center;">You will be able to set your nickname when you log in for the first time.</p>
+					<br><p class="center">You will be able to set your nickname when you log in for the first time.</p>
 				</td>
 				<td id="explain" style="vertical-align:top;" bgcolor="#ccccff">
-					<p style="font-weight:bold;text-align:center;">Explanation</p>
+					<p class="center" style="font-weight:bold">Explanation</p>
 					<span>Username - This is what you will be logging in with.</span><br>
 					<span>Password - This is what you'll type in when you log in.</span><br>
 					<span>Confirm Password - This is to check that you've entered your password correctly.</span><br>

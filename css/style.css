@@ -2,3 +2,10 @@
 	color: red;
 	font-weight: bold;
 }
+
+.center {
+	text-align: center;
+}
+
+.starclr { color: #0000ff; }
+.coinclr { color: #ffc800; }

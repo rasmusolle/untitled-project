@@ -24,13 +24,13 @@ if ($error) echo '<br>';
 <link rel="stylesheet" type="text/css" href="/css/game_exchange.css">
 
 <b>Stars Exchange</b><br>
-<b>Stars: <font color="blue">* <?=round($userrpgdata['stars'], 2) ?></font></b><br>
-<b>Coins: <span style="color:#ffc800"> <?=round($userrpgdata['coins'], 2) ?></span></b><br><br>
+<b>Stars: <span class="starclr">* <?=round($userrpgdata['stars'], 2) ?></span></b><br>
+<b>Coins: <span style="coinclr"> <?=round($userrpgdata['coins'], 2) ?></span></b><br><br>
 
 <table>
 	<tr>
 		<td class="layout buyclr">
-			<h3>Place BUY <font color="blue">Stars</font> order. Using coins.</h3><br>
+			<h3>Place BUY <span class="starclr">Stars</span> order. Using coins.</h3><br>
 			<form target="_top" action="" method="post">
 				<input type="hidden" name="buystars" value="true">
 				<input type="hidden" name="value" value="302">
@@ -42,7 +42,7 @@ if ($error) echo '<br>';
 	</tr>
 	<tr>
 		<td class="layout sellclr">
-			<h3>Place SELL <font color="blue">Stars</font> order. To get coins.</h3><br>
+			<h3>Place SELL <span class="starclr">Stars</span> order. To get coins.</h3><br>
 			<form target="_top" action="" method="post">
 				<input type="hidden" name="sellstars" value="true">
 				<input type="hidden" name="value" value="302">

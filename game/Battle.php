@@ -126,7 +126,7 @@ What to do?<br><br>
 		</tr>
 	</table>
 </div><br>
-<div class="box" style="width:400px; text-align:center;">
+<div class="box center" style="width:400px">
 	<p>Actions...</p>
 	<a class="btn btn-primary" href="?show=4&action=atk&atktype=1">Attack</a>
 	<a class="btn btn-primary" href="?show=4&action=atk&atktype=2">Magic</a>

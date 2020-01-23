@@ -2,12 +2,10 @@
 
 /**
  * Echoes text as an error.
- * 
- * @param string $msg 
  */
 function errorprint($msg = 'Undefined error.') {
 	global $error;
-	echo '<font class="error">' . $msg . '</font>';
+	echo '<span class="error">' . $msg . '</span>';
 	$error = true;
 }
 

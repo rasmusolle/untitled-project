@@ -58,7 +58,7 @@ Welcome <span style="color: <?=powerlevelcolor($userdata['powerlevel']) ?>"><?=$
 		</tr>
 		<tr>
 			<th class="right"><abbr title="Luck">Lck</abbr></th>
-			<td><?=$userrpgdata['luck'] ?> <font style="color:darkred;"><abbr title="You've won the latest Lottery drawings.">(0.5x)</abbr></font></td>
+			<td><?=$userrpgdata['luck'] ?> <span style="color:darkred"><abbr title="You've won the latest Lottery drawings.">(0.5x)</abbr></span></td>
 		</tr>
 	</table>
 </div>&nbsp;

@@ -6,7 +6,7 @@ if ((isset($_GET['a']) ? $_GET['a'] : (isset($_POST['a']) ? $_POST['a'] : false)
 	switch ((isset($_GET['a']) ? $_GET['a'] : $_POST['a'])) {
 		case 'chatclear':
 			query("TRUNCATE TABLE chat");
-			echo '<font color=blue>Chat has been cleared successfully.</font>';
+			echo '<span class="starclr">Chat has been cleared successfully.</span>';
 		break;
 		case 'banuser':
 			echo 'Coming soon!';

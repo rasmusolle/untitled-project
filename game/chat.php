@@ -51,7 +51,7 @@ if ($temp == 0) {
 	<tr>
 		<td bgcolor="#eeeeee">
 			<img src="/static/device/service.svg">
-			<font color="purple">Service Message</font>: There are no messages since last chat reset.
+			<span color="purple">Service Message</span>: There are no messages since last chat reset.
 		</td>
 	</tr>
 	<?php
